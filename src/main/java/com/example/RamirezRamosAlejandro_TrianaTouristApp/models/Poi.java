@@ -24,14 +24,14 @@ public class Poi {
     //La categoría debe ser una categoría existente (Validador propio)
     private Category category;
 
-    //A partir de aquí, poner la notación @url
+    //A partir de aquí, poner la notación url
 
     /* Por si el día de mañana queremos guardar más fotos,
     usaremos una notación que coja un array de atributos
     (sí, como en el ejemplo anterior) */
 
     //Obligatoria
-    private String  coverPhoto;
+    private String coverPhoto;
 
     //No obligatoria
     private String photo2;
