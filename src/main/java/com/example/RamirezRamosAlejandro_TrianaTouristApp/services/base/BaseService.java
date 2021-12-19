@@ -1,5 +1,6 @@
 package com.example.RamirezRamosAlejandro_TrianaTouristApp.services.base;
 
+import com.example.RamirezRamosAlejandro_TrianaTouristApp.errors.exceptions.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -16,7 +17,13 @@ public class BaseService<T, ID, R extends JpaRepository<T, ID>> {
     }
 
     public Optional<T> findById(ID id) {
-        return repositorio.findById(id);
+        Optional<T> result = repositorio.findById(id);
+
+        if (result==null) {
+            throw new EntityNotFoundException(id.toString(), result.getClass());
+        } else {
+            return result;
+        }
     }
 
     public T save(T t) {
