@@ -1,8 +1,13 @@
 package com.example.RamirezRamosAlejandro_TrianaTouristApp.services;
 
-import com.example.RamirezRamosAlejandro_TrianaTouristApp.models.Poi;
 import com.example.RamirezRamosAlejandro_TrianaTouristApp.repos.PoiRepository;
-import com.example.RamirezRamosAlejandro_TrianaTouristApp.services.base.BaseService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
-public class PoiService extends BaseService<Poi, Long, PoiRepository> {
+@Service
+@RequiredArgsConstructor
+public class PoiService {
+
+    private final PoiRepository repositorio;
+
 }

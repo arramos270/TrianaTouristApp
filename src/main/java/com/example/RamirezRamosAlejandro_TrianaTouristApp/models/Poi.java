@@ -1,9 +1,20 @@
 package com.example.RamirezRamosAlejandro_TrianaTouristApp.models;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.SuperBuilder;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.time.LocalDate;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@SuperBuilder
 public class Poi {
 
     //No puede existir un mismo punto de interés 2 veces. ¿Podemos crear un dto para comparar? ¿O podemos comparar antes de hacer el save en el metodo de guardar?

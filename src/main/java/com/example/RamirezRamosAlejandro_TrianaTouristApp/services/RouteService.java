@@ -1,8 +1,12 @@
 package com.example.RamirezRamosAlejandro_TrianaTouristApp.services;
 
-import com.example.RamirezRamosAlejandro_TrianaTouristApp.models.Route;
 import com.example.RamirezRamosAlejandro_TrianaTouristApp.repos.RouteRepository;
-import com.example.RamirezRamosAlejandro_TrianaTouristApp.services.base.BaseService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
-public class RouteService extends BaseService<Route, Long, RouteRepository> {
+@Service
+@RequiredArgsConstructor
+public class RouteService {
+
+    private final RouteRepository repositorio;
 }
