@@ -1,4 +1,4 @@
-package com.example.RamirezRamosAlejandro_TrianaTouristApp.dtos;
+package com.example.RamirezRamosAlejandro_TrianaTouristApp.dtos.models;
 
 import com.example.RamirezRamosAlejandro_TrianaTouristApp.models.Category;
 import com.example.RamirezRamosAlejandro_TrianaTouristApp.validation.anotations.CorrectLocationFormat;

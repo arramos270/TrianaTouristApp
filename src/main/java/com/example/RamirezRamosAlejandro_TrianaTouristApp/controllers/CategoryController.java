@@ -1,8 +1,11 @@
 package com.example.RamirezRamosAlejandro_TrianaTouristApp.controllers;
 
+import com.example.RamirezRamosAlejandro_TrianaTouristApp.dtos.models.CreateCategoryDto;
+import com.example.RamirezRamosAlejandro_TrianaTouristApp.dtos.converters.CategoryDtoConverter;
 import com.example.RamirezRamosAlejandro_TrianaTouristApp.models.Category;
 import com.example.RamirezRamosAlejandro_TrianaTouristApp.services.CategoryService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -19,30 +22,33 @@ public class CategoryController {
     //@Valid en los parametros de los metodos
 
     private final CategoryService service;
+    private final CategoryDtoConverter dtoConverter;
 
     @GetMapping("/")
-    public List<Category> todos() {
-        return service.findAll();
+    public ResponseEntity<List<Category>> findAll() {
+        return ResponseEntity.status(200).body(service.findAll());
     }
 
     @GetMapping("/{id}")
-    public Category uno(@PathVariable Long id) {
-        return service.findById(id);
+    public ResponseEntity<Category> findOne(@PathVariable Long id) {
+        return ResponseEntity.status(HttpStatus.OK).body(service.findById(id));
     }
 
     @PostMapping("/")
-    public Category crear(@Valid @RequestBody Category category) {
-        return service.save(category);
+    public ResponseEntity<Category> create(@Valid @RequestBody CreateCategoryDto nuevaCategoria) {
+        Category nueva= dtoConverter.createCategoryDtoToCategory(nuevaCategoria);
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.save(nueva));
     }
 
-    @PutMapping("/")
-    public Category edit(@RequestBody Category category){
-        return category;
+    @PutMapping("/{id}") //Si algo falla se encarga el servicio de lanzar la excepción
+    public ResponseEntity<Category> edit(@RequestBody Category category) {
+        return ResponseEntity.ok().body(service.edit(category));
     }
 
-    @DeleteMapping("")
-    public ResponseEntity<Category> delete(@RequestBody Category categoria){
-        return null;
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> delete(@PathVariable Long id){
+        service.delete(id);
+        return ResponseEntity.noContent().build();
     }
     
 }

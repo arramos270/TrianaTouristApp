@@ -6,8 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Getter
@@ -33,6 +32,8 @@ public class Poi {
 
     //Aqui vinculamos unidireccionalmente con Category
     //La categoría debe ser una categoría existente (Validador propio)
+    @OneToMany
+    @JoinColumn(name = "poi_id")
     private Category category;
 
     //A partir de aquí, poner la notación url
@@ -49,4 +50,15 @@ public class Poi {
 
     //No obligatoria
     private String photo3;
+
+    public Poi(String name, String location, String description, LocalDate date, Category category, String coverPhoto, String photo2, String photo3) {
+        this.name = name;
+        this.location = location;
+        this.description = description;
+        this.date = date;
+        this.category = category;
+        this.coverPhoto = coverPhoto;
+        this.photo2 = photo2;
+        this.photo3 = photo3;
+    }
 }

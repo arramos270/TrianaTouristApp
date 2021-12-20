@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
-
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
@@ -22,4 +21,9 @@ public class Category {
 
     //Debe ser único (validador propio) y no vacío (No Null)
     private String name;
+
+    public Category(String name) {
+        this.name = name;
+    }
+
 }
